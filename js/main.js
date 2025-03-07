@@ -20,28 +20,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Dropdown en dispositivos móviles
-    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-    
-    dropdownToggles.forEach(toggle => {
-        toggle.addEventListener('click', function(e) {
-            // Solo prevenir el comportamiento predeterminado en dispositivos móviles
-            if (window.innerWidth < 768) {
-                e.preventDefault();
-                const parent = this.parentElement;
-                parent.classList.toggle('active');
-                
-                // Cambiar ícono del dropdown
-                const icon = this.querySelector('i');
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', function(e) {
+        // Solo prevenir el comportamiento predeterminado en dispositivos móviles
+        if (window.innerWidth < 768) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle('active');
+            
+            // Cambiar ícono del dropdown
+            const icon = this.querySelector('i');
+            if (icon) {
                 if (icon.classList.contains('fa-chevron-down')) {
                     icon.classList.remove('fa-chevron-down');
                     icon.classList.add('fa-chevron-up');
-                } else {
+                } else if (icon.classList.contains('fa-chevron-up')) {
                     icon.classList.remove('fa-chevron-up');
                     icon.classList.add('fa-chevron-down');
+                } else if (icon.classList.contains('fa-chevron-right')) {
+                    icon.classList.remove('fa-chevron-right');
+                    icon.classList.add('fa-chevron-down');
+                } else if (icon.classList.contains('fa-chevron-down')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-right');
                 }
             }
-        });
+        }
     });
+});
     
     // Carrito de compras (funcionalidad básica)
     const addToCartButtons = document.querySelectorAll('.btn-add-cart');
