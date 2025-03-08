@@ -615,5 +615,20 @@
                 updateCartCount();
             });
         </script>
+        <script>
+            // Actualizar contador del carrito
+            document.addEventListener('DOMContentLoaded', function() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                
+                const cartCountElement = document.querySelector('.cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = count;
+                }
+            });
+        </script>
+
+                
+        
         </body>
         </html>
