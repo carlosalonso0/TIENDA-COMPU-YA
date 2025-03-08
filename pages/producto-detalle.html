@@ -551,5 +551,69 @@
                     }
                 }
             </script>
+            <script>
+            // Función para añadir al carrito
+            function addToCart() {
+                const quantity = parseInt(document.getElementById('quantityInput').value);
+                
+                if (isNaN(quantity) || quantity < 1) {
+                    alert('Por favor, selecciona una cantidad válida');
+                    return;
+                }
+                
+                // Obtener información del producto
+                const productName = document.querySelector('.product-title').textContent;
+                const productBrand = document.querySelector('.product-brand').textContent;
+                const productPrice = parseFloat(document.querySelector('.product-price').textContent.replace('S/', '').trim());
+                const productImage = document.getElementById('mainImage').src;
+                
+                // Obtener el carrito actual de localStorage
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                // Verificar si el producto ya está en el carrito
+                const existingProductIndex = cart.findIndex(item => 
+                    item.name === productName && item.brand === productBrand
+                );
+                
+                if (existingProductIndex !== -1) {
+                    // Si ya existe, aumentar la cantidad
+                    cart[existingProductIndex].quantity += quantity;
+                } else {
+                    // Si no existe, añadir nuevo item
+                    cart.push({
+                        name: productName,
+                        brand: productBrand,
+                        price: productPrice,
+                        image: productImage,
+                        quantity: quantity
+                    });
+                }
+                
+                // Guardar carrito actualizado
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Actualizar contador en el header
+                updateCartCount();
+                
+                // Mostrar mensaje de confirmación
+                alert(`Se ha añadido "${productName}" al carrito`);
+            }
+            
+            // Función para actualizar el contador del carrito en el header
+            function updateCartCount() {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                
+                const cartCountElement = document.querySelector('.cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = count;
+                }
+            }
+            
+            // Inicializar contador al cargar la página
+            document.addEventListener('DOMContentLoaded', function() {
+                updateCartCount();
+            });
+        </script>
         </body>
         </html>
