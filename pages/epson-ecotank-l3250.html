@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Epson EcoTank L3250 - Impresora multifunción con sistema de tanque de tinta continuo. Imprime, escanea y copia.">
+    <title>Epson EcoTank L3250 | COMPU YA</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-detail {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .product-gallery {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .main-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            height: 350px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+        }
+        
+        .main-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .thumbnail-container {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+        }
+        
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-sm);
+            padding: var(--spacing-xs);
+            cursor: pointer;
+            transition: border-color var(--transition-fast);
+        }
+        
+        .thumbnail.active {
+            border-color: var(--primary-color);
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .product-brand {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .product-title {
+            font-size: 1.8rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .product-rating {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .stars {
+            color: #ffc107;
+            margin-right: var(--spacing-sm);
+        }
+        
+        .review-count {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .product-availability {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            font-weight: 500;
+        }
+        
+        .in-stock {
+            color: var(--success-color);
+        }
+        
+        .product-description {
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .buy-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+        }
+        
+        .quantity button {
+            background-color: var(--background-light);
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        .quantity input {
+            width: 60px;
+            height: 40px;
+            border: none;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 1rem;
+        }
+        
+        .add-to-cart {
+            flex: 1;
+        }
+        
+        .product-meta {
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .meta-item {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .specs-section {
+            margin-bottom: var(--spacing-xxl);
+        }
+        
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: var(--shadow-sm);
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+        }
+        
+        .specs-table th, .specs-table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .specs-table th {
+            background-color: var(--background-light);
+            font-weight: 500;
+            width: 30%;
+        }
+        
+        .specs-table tr:last-child th,
+        .specs-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .specs-table tr:nth-child(even) td {
+            background-color: var(--background-light);
+        }
+        
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .thumbnail {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .buy-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">
+                        <h1>COMPU YA</h1>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form action="#" method="GET">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="user-actions">
+                    <a href="carrito.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Carrito <span class="cart-count" id="headerCartCount">0</span></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html">Inicio</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle active">Productos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="productos.html?categoria=impresoras" class="active">Impresoras</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="productos.html?categoria=componentes" class="dropdown-toggle">Componentes <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="productos.html?categoria=componentes&subcategoria=cases">Cases</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=procesadores">Procesadores</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=tarjetas">Tarjetas</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=placas">Placas</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="nosotros.html">Nosotros</a></li>
+                <li class="nav-item"><a href="contacto.php">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Migas de pan -->
+    <div class="container" style="padding-top: var(--spacing-md); background: transparent;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="background: transparent; padding: 0;">
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                <li>Epson EcoTank L3250</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Detalles del producto -->
+    <section class="product-detail">
+        <div class="container">
+            <!-- Contenedor principal del producto -->
+            <div class="product-container">
+                <!-- Galería de imágenes -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="../img/productos/impresoras/epson-l3250-main.webp" alt="Epson EcoTank L3250" id="mainImage">
+                    </div>
+                    <div class="thumbnail-container">
+                        <div class="thumbnail active">
+                            <img src="../img/productos/impresoras/epson-l3250-frontal-thumb.webp" alt="Epson EcoTank L3250 - Frontal" onclick="changeImage(this)">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="../img/productos/impresoras/epson-l3250-lateral-thumb.webp" alt="Epson EcoTank L3250 - Lateral" onclick="changeImage(this)">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="../img/productos/impresoras/epson-l3250-panel-thumb.webp" alt="Epson EcoTank L3250 - Panel" onclick="changeImage(this)">
+                        </div>
+                        <div class="thumbnail">
+                            <img src="../img/productos/impresoras/epson-l3250-sistema-thumb.webp" alt="Epson EcoTank L3250 - Sistema" onclick="changeImage(this)">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Información del producto -->
+                <div class="product-info">
+                    <div class="product-brand">Epson</div>
+                    <h1 class="product-title">EcoTank L3250</h1>
+                    <div class="product-rating">
+                        <div class="stars">
+                            <div class="product-rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="review-count">(118 opiniones)</div>
+                            </div>
+                            <div class="product-price">S/ 569</div>
+                            <div class="product-availability">
+                                <i class="fas fa-check-circle in-stock"></i> <span class="in-stock">&nbsp;En stock</span> (8 unidades)
+                            </div>
+                            <div class="product-description">
+                                <p>La Epson EcoTank L3250 es una impresora multifunción con sistema de tanque de tinta que ofrece impresión de alta calidad y bajo costo por página. Con conectividad Wi-Fi, impresión móvil y diseño compacto, es ideal para el hogar u oficina pequeña.</p>
+                            </div>
+                            <div class="buy-actions">
+                                <div class="quantity">
+                                    <button onclick="decrementQuantity()">-</button>
+                                    <input type="number" value="1" min="1" id="quantityInput">
+                                    <button onclick="incrementQuantity()">+</button>
+                                </div>
+                                <button class="btn btn-primary add-to-cart" onclick="addToCart()">
+                                    <i class="fas fa-shopping-cart"></i> Añadir al carrito
+                                </button>
+                            </div>
+                            <div class="product-meta">
+                                <div class="meta-item"><strong>SKU:</strong> C11CJ6705P</div>
+                                <div class="meta-item"><strong>Categoría:</strong> <a href="productos.html?categoria=impresoras">Impresoras</a></div>
+                                <div class="meta-item"><strong>Marca:</strong> <a href="productos.html?marca=epson">Epson</a></div>
+                                <div class="meta-item"><strong>Garantía:</strong> 1 año con el fabricante</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Especificaciones -->
+                    <div class="specs-section">
+                        <h2 class="section-title">Especificaciones técnicas</h2>
+                        <table class="specs-table">
+                            <tbody>
+                                <tr>
+                                    <th>Modelo alfanumérico</th>
+                                    <td>C11CJ6705P</td>
+                                </tr>
+                                <tr>
+                                    <th>Color</th>
+                                    <td>Negro</td>
+                                </tr>
+                                <tr>
+                                    <th>Modelo detallado</th>
+                                    <td>EcoTank L3250</td>
+                                </tr>
+                                <tr>
+                                    <th>Tipo de impresora</th>
+                                    <td>Multifunción</td>
+                                </tr>
+                                <tr>
+                                    <th>Tecnología de impresión</th>
+                                    <td>Inyección de tinta</td>
+                                </tr>
+                                <tr>
+                                    <th>Tipo de impresión</th>
+                                    <td>Color</td>
+                                </tr>
+                                <tr>
+                                    <th>Funciones de la impresora</th>
+                                    <td>Multifunción (Impresión, Escaneo, Copia)</td>
+                                </tr>
+                                <tr>
+                                    <th>Velocidad máxima de impresión en negro</th>
+                                    <td>33 ppm</td>
+                                </tr>
+                                <tr>
+                                    <th>Velocidad máxima de impresión en color</th>
+                                    <td>15 ppm</td>
+                                </tr>
+                                <tr>
+                                    <th>Resolución de impresión</th>
+                                    <td>5760 x 1440 dpi</td>
+                                </tr>
+                                <tr>
+                                    <th>Ciclo mensual de trabajo</th>
+                                    <td>Hasta 3,000 páginas</td>
+                                </tr>
+                                <tr>
+                                    <th>Conectividad</th>
+                                    <td>USB 2.0, Wi-Fi 802.11b/g/n, Wi-Fi Direct</td>
+                                </tr>
+                                <tr>
+                                    <th>Impresión desde dispositivos móviles</th>
+                                    <td>Sí, mediante app Epson Smart Panel</td>
+                                </tr>
+                                <tr>
+                                    <th>Impresión a doble cara</th>
+                                    <td>Manual</td>
+                                </tr>
+                                <tr>
+                                    <th>Tamaño máximo de papel</th>
+                                    <td>A4, Carta, Oficio</td>
+                                </tr>
+                                <tr>
+                                    <th>Bandeja de entrada</th>
+                                    <td>100 hojas</td>
+                                </tr>
+                                <tr>
+                                    <th>Rendimiento de tinta negra</th>
+                                    <td>Hasta 7,500 páginas</td>
+                                </tr>
+                                <tr>
+                                    <th>Rendimiento de tinta a color</th>
+                                    <td>Hasta 6,000 páginas (combinado)</td>
+                                </tr>
+                                <tr>
+                                    <th>Dimensiones</th>
+                                    <td>37.5 x 34.7 x 17.9 cm</td>
+                                </tr>
+                                <tr>
+                                    <th>Peso</th>
+                                    <td>4.3 kg</td>
+                                </tr>
+                                <tr>
+                                    <th>Compatible con</th>
+                                    <td>Windows, macOS, Linux</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-column">
+                            <h3>Categorías</h3>
+                            <ul>
+                                <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                                <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                                <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                                <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                                <li><a href="productos.html?categoria=componentes">Componentes</a></li>
+                                <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Información</h3>
+                            <ul>
+                                <li><a href="nosotros.html">Sobre nosotros</a></li>
+                                <li><a href="envios.html">Envíos y devoluciones</a></li>
+                                <li><a href="privacidad.html">Política de privacidad</a></li>
+                                <li><a href="terminos.html">Términos y condiciones</a></li>
+                                <li><a href="contacto.php">Contacto</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Compras</h3>
+                            <ul>
+                                <li><a href="#">Carrito de compras</a></li>
+                                <li><a href="#">Proceso de compra</a></li>
+                                <li><a href="#">Seguimiento de pedidos</a></li>
+                                <li><a href="#">Métodos de pago</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-column">
+                            <h3>Contacto</h3>
+                            <p><i class="fas fa-map-marker-alt"></i> Av. Uruguay 375, Lima</p>
+                            <p><i class="fas fa-phone"></i> 960 387918 / 980961060</p>
+                            <p><i class="fas fa-envelope"></i> info@compuya.com</p>
+                            <div class="social-media">
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2025 COMPU YA. Todos los derechos reservados.</p>
+                        <div class="payment-methods">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                            <i class="fab fa-cc-paypal"></i>
+                            <i class="fab fa-mercado-pago"></i>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        
+            <script src="../js/main.js"></script>
+            <script>
+                // Función para cambiar la imagen principal
+                function changeImage(element) {
+                    const mainImage = document.getElementById('mainImage');
+                    mainImage.src = element.src.replace('-thumb', '');
+                    
+                    // Cambiar la clase activa
+                    const thumbnails = document.querySelectorAll('.thumbnail');
+                    thumbnails.forEach(thumbnail => {
+                        thumbnail.classList.remove('active');
+                    });
+                    element.parentElement.classList.add('active');
+                }
+
+                // Funciones para incrementar/decrementar cantidad
+                function incrementQuantity() {
+                    const input = document.getElementById('quantityInput');
+                    input.value = parseInt(input.value) + 1;
+                }
+                
+                function decrementQuantity() {
+                    const input = document.getElementById('quantityInput');
+                    if (parseInt(input.value) > 1) {
+                        input.value = parseInt(input.value) - 1;
+                    }
+                }
+            </script>
+            <script>
+                // Función para añadir al carrito
+                function addToCart(productName, productBrand, productPrice, productImage, quantity = 1) {
+                    // Obtener el carrito actual de localStorage
+                    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    
+                    // Verificar si el producto ya está en el carrito
+                    const existingProductIndex = cart.findIndex(item => 
+                        item.name === productName && item.brand === productBrand
+                    );
+                    
+                    if (existingProductIndex !== -1) {
+                        // Si ya existe, aumentar la cantidad
+                        cart[existingProductIndex].quantity += quantity;
+                    } else {
+                        // Si no existe, añadir nuevo item
+                        cart.push({
+                            name: productName,
+                            brand: productBrand,
+                            price: productPrice,
+                            image: productImage,
+                            quantity: quantity
+                        });
+                    }
+                    
+                    // Guardar carrito actualizado
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    
+                    // Disparar evento de almacenamiento para sincronizar entre pestañas
+                    window.dispatchEvent(new Event('storage'));
+                    
+                    // Mostrar mensaje de confirmación
+                    alert(`Se ha añadido "${productName}" al carrito`);
+                }
+            
+                // Función para actualizar el contador del carrito
+                function updateCartCount() {
+                    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    const count = cart.reduce((total, item) => total + item.quantity, 0);
+                    
+                    // Actualizar todos los elementos con clase cart-count
+                    const cartCountElements = document.querySelectorAll('.cart-count');
+                    cartCountElements.forEach(element => {
+                        element.textContent = count;
+                    });
+                }
+            
+                // Escuchar cambios en localStorage
+                window.addEventListener('storage', function(e) {
+                    updateCartCount();
+                });
+            
+                // Actualizar contador al cargar la página
+                document.addEventListener('DOMContentLoaded', updateCartCount);
+            </script>
+        <style>
+            .breadcrumb {
+                display: flex;
+                align-items: center;
+                background: transparent;
+                padding: 0;
+                margin: 0;
+                font-family: Arial, sans-serif;
+                font-size: 14px;
+            }
+        
+            .breadcrumb li {
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+                color: #666;
+            }
+        
+            .breadcrumb li:not(:last-child)::after {
+                content: '›';
+                margin-left: 10px;
+                color: #999;
+            }
+        
+            .breadcrumb li a {
+                color: #1a73e8;
+                text-decoration: none;
+                transition: color 0.2s ease;
+            }
+        
+            .breadcrumb li a:hover {
+                color: #0d47a1;
+                text-decoration: underline;
+            }
+        
+            .breadcrumb li:last-child {
+                color: #333;
+                font-weight: bold;
+            }
+        </style>
+        </body>
+        </html>

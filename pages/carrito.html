@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Carrito de compras de COMPU YA. Revisa tus productos seleccionados y finaliza tu compra.">
+    <title>Carrito de Compras | COMPU YA</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .cart-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .cart-empty {
+            text-align: center;
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .cart-empty i {
+            font-size: 4rem;
+            color: var(--border-color);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .cart-empty p {
+            margin-bottom: var(--spacing-xl);
+            color: var(--text-light);
+        }
+        
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .cart-table th {
+            background-color: var(--background-light);
+            padding: var(--spacing-md);
+            text-align: left;
+            font-weight: 500;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .cart-table td {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+        
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            background-color: white;
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-details h3 {
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.1rem;
+        }
+        
+        .product-brand {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        
+        .quantity-btn {
+            background-color: var(--background-light);
+            border: 1px solid var(--border-color);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .quantity-input {
+            width: 50px;
+            height: 32px;
+            border: 1px solid var(--border-color);
+            border-left: none;
+            border-right: none;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .remove-btn {
+            color: var(--text-light);
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: color var(--transition-fast);
+        }
+        
+        .remove-btn:hover {
+            color: var(--error-color);
+        }
+        
+        .price {
+            font-weight: 500;
+        }
+        
+        .cart-summary {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .summary-title {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-sm);
+            font-size: 0.95rem;
+        }
+        
+        .summary-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .cart-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .cart-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--spacing-xl);
+        }
+        
+        @media (max-width: 768px) {
+            .cart-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart-table {
+                font-size: 0.9rem;
+            }
+            
+            .product-image {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .product-details h3 {
+                font-size: 1rem;
+            }
+            
+            .cart-buttons {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+            
+            .cart-buttons .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">
+                        <h1>COMPU YA</h1>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form action="#" method="GET">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="user-actions">
+                    <a href="carrito.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Carrito <span class="cart-count" id="headerCartCount">0</span></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html">Inicio</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">Productos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="productos.html?categoria=componentes" class="dropdown-toggle">Componentes <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="productos.html?categoria=componentes&subcategoria=cases">Cases</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=procesadores">Procesadores</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=tarjetas">Tarjetas</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=placas">Placas</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="nosotros.html">Nosotros</a></li>
+                <li class="nav-item"><a href="contacto.php">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Migas de pan -->
+    <div class="container" style="padding-top: var(--spacing-md);">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb" style="display: flex; gap: var(--spacing-xs); font-size: 0.9rem; color: var(--text-light);">
+                <li><a href="../index.html" style="color: var(--primary-color);">Inicio</a></li>
+                <li><span style="margin: 0 var(--spacing-xs);">/</span></li>
+                <li aria-current="page">Carrito de compras</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- Contenido del carrito -->
+    <section class="cart-section">
+        <div class="container">
+            <h1 class="section-title">Carrito de compras</h1>
+            
+            <!-- Contenido cuando el carrito está vacío -->
+            <div class="cart-empty" id="emptyCart" style="display: none;">
+                <i class="fas fa-shopping-cart"></i>
+                <h2>Tu carrito está vacío</h2>
+                <p>Parece que aún no has añadido productos a tu carrito.</p>
+                <a href="../index.html" class="btn btn-primary">Comenzar a comprar</a>
+            </div>
+            
+            <!-- Contenido cuando hay productos en el carrito -->
+            <div class="cart-grid" id="cartContent">
+                <div>
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th>Subtotal</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="cartItems">
+                            <!-- Los items del carrito se llenarán dinámicamente con JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="cart-summary">
+                    <h3 class="summary-title">Resumen del pedido</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">S/ 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío</span>
+                        <span id="shipping">S/ 20.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="total">S/ 20.00</span>
+                    </div>
+                    <div class="cart-buttons">
+                        <a href="../index.html" class="btn btn-secondary">Seguir comprando</a>
+                        <button class="btn btn-primary" id="checkoutBtn">Proceder al pago</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Categorías</h3>
+                    <ul>
+                        <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                        <li><a href="productos.html?categoria=componentes">Componentes</a></li>
+                        <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="nosotros.html">Sobre nosotros</a></li>
+                        <li><a href="envios.html">Envíos y devoluciones</a></li>
+                        <li><a href="privacidad.html">Política de privacidad</a></li>
+                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                        <li><a href="contacto.php">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Compras</h3>
+                    <ul>
+                        <li><a href="carrito.html">Carrito de compras</a></li>
+                        <li><a href="#">Proceso de compra</a></li>
+                        <li><a href="#">Seguimiento de pedidos</a></li>
+                        <li><a href="#">Métodos de pago</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Uruguay 375, Lima</p>
+                    <p><i class="fas fa-phone"></i> 960 387918 / 980961060</p>
+                    <p><i class="fas fa-envelope"></i> info@compuya.com</p>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COMPU YA. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-mercado-pago"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Carrito de compras usando localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cartItems');
+        const subtotalElement = document.getElementById('subtotal');
+        const totalElement = document.getElementById('total');
+        const headerCartCount = document.getElementById('headerCartCount');
+        const emptyCartElement = document.getElementById('emptyCart');
+        const cartContentElement = document.getElementById('cartContent');
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        
+        // Función para actualizar la visualización del carrito
+        function updateCartDisplay() {
+            // Actualizar contador en el header
+            headerCartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Mostrar mensaje de carrito vacío o contenido del carrito
+            if (cart.length === 0) {
+                emptyCartElement.style.display = 'block';
+                cartContentElement.style.display = 'none';
+                return;
+            } else {
+                emptyCartElement.style.display = 'none';
+                cartContentElement.style.display = 'grid';
+            }
+            
+            // Limpiar contenedor de items
+            cartItemsContainer.innerHTML = '';
+            
+            // Variables para calcular totales
+            let subtotal = 0;
+            
+            // Añadir cada producto al carrito
+            cart.forEach((item, index) => {
+                const itemSubtotal = item.price * item.quantity;
+                subtotal += itemSubtotal;
+                
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <div class="product-info">
+                            <div class="product-image">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="product-details">
+                                <div class="product-brand">${item.brand}</div>
+                                <h3>${item.name}</h3>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="price">S/ ${item.price.toFixed(2)}</td>
+                    <td>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                            <input type="number" class="quantity-input" value="${item.quantity}" min="1" onchange="updateQuantityFromInput(this, ${index})">
+                            <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                        </div>
+                    </td>
+                    <td class="price">S/ ${itemSubtotal.toFixed(2)}</td>
+                    <td>
+                        <button class="remove-btn" onclick="removeItem(${index})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                cartItemsContainer.appendChild(tr);
+            });
+            
+            // Actualizar totales
+            const shipping = 20; // Costo fijo de envío
+            subtotalElement.textContent = `S/ ${subtotal.toFixed(2)}`;
+            totalElement.textContent = `S/ ${(subtotal + shipping).toFixed(2)}`;
+        }
+        
+        // Función para actualizar cantidad desde botones + y -
+        function updateQuantity(index, newQuantity) {
+            if (newQuantity < 1) return; // Evitar cantidades negativas
+            
+            cart[index].quantity = newQuantity;
+            saveCart();
+            updateCartDisplay();
+        }
+        
+        // Función para actualizar cantidad desde input
+        function updateQuantityFromInput(input, index) {
+            const newQuantity = parseInt(input.value);
+            if (isNaN(newQuantity) || newQuantity < 1) {
+                input.value = cart[index].quantity;
+                return;
+            }
+            
+            cart[index].quantity = newQuantity;
+            saveCart();
+            updateCartDisplay();
+        }
+        
+        // Función para eliminar un item del carrito
+        function removeItem(index) {
+            cart.splice(index, 1);
+            saveCart();
+            updateCartDisplay();
+        }
+        
+        // Función para guardar el carrito en localStorage
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        
+        // Función para proceder al pago
+        checkoutBtn.addEventListener('click', function() {
+            alert('¡Gracias por tu compra! En un futuro, aquí te redirigiremos a la pasarela de pago.');
+            // Aquí iría la redirección a la página de checkout o integración con Mercado Pago
+        });
+        
+        // Inicializar la visualización del carrito al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Conozca más sobre COMPU YA, su historia, misión y valores. Somos especialistas en equipos de cómputo en Lima.">
+    <title>Nosotros | COMPU YA</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Estilos específicos para la página Nosotros -->
+    <style>
+        .about-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .about-image img {
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .about-content h2 {
+            margin-bottom: var(--spacing-md);
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+        
+        .about-content p {
+            margin-bottom: var(--spacing-md);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        
+        .mission-vision {
+            background-color: var(--background-color);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .mission-vision-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+        }
+        
+        .mission-box, .vision-box {
+            background-color: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .mission-box h3, .vision-box h3 {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .mission-box i, .vision-box i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+        }
+        
+        .values-section {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .values-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-lg);
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: var(--spacing-lg);
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .value-card h3 {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .team-section {
+            background-color: var(--background-color);
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+        
+        .team-photo {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: var(--spacing-md);
+        }
+        
+        .team-name {
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .team-role {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        @media (max-width: 768px) {
+            .about-container,
+            .mission-vision-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-image {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .values-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">
+                        <h1>COMPU YA</h1>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form action="#" method="GET">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="user-actions">
+                    <a href="carrito.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Carrito <span class="cart-count" id="headerCartCount">0</span></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html">Inicio</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">Productos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                        <li class="dropdown-submenu">
+                        <a href="productos.html?categoria=componentes" class="dropdown-toggle">Componentes <i class="fas fa-chevron-right"></i></a>
+                    <ul class="dropdown-menu submenu">
+                        <li><a href="productos.html?categoria=componentes&subcategoria=cases">Cases</a></li>
+                        <li><a href="productos.html?categoria=componentes&subcategoria=procesadores">Procesadores</a></li>
+                        <li><a href="productos.html?categoria=componentes&subcategoria=tarjetas">Tarjetas</a></li>
+                        <li><a href="productos.html?categoria=componentes&subcategoria=placas">Placas</a></li>
+                    </ul>
+                </li>
+                <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+            </ul>
+                </li>
+                <li class="nav-item"><a href="nosotros.html" class="active">Nosotros</a></li>
+                <li class="nav-item"><a href="contacto.php">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner de la página -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Sobre Nosotros</h2>
+                <p>Conoce más acerca de COMPU YA, nuestra historia y nuestra pasión por la tecnología</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Nosotros -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Nuestra Historia</h2>
+                    <p>COMPU YA nació en 2010 con la misión de ofrecer soluciones informáticas de calidad a precios accesibles. Lo que comenzó como una pequeña tienda en el corazón de Lima, ha crecido hasta convertirse en un referente en el mercado de tecnología.</p>
+                    <p>Durante más de una década, hemos trabajado para construir relaciones de confianza con nuestros clientes, ofreciendo siempre productos originales, garantía oficial y un servicio técnico especializado.</p>
+                    <p>Nuestro equipo está formado por apasionados de la tecnología, comprometidos con brindar asesoramiento experto y soluciones personalizadas para cada necesidad.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://via.placeholder.com/600x400" alt="Tienda COMPU YA">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Misión y Visión -->
+    <section class="mission-vision">
+        <div class="container">
+            <h2 class="section-title">Nuestra Misión y Visión</h2>
+            <div class="mission-vision-container">
+                <div class="mission-box">
+                    <h3><i class="fas fa-bullseye"></i> Misión</h3>
+                    <p>Ofrecer soluciones tecnológicas de calidad que satisfagan las necesidades de nuestros clientes, con un servicio personalizado, productos confiables y precios competitivos, contribuyendo al desarrollo digital de nuestra comunidad.</p>
+                </div>
+                <div class="vision-box">
+                    <h3><i class="fas fa-eye"></i> Visión</h3>
+                    <p>Ser reconocidos como la empresa líder en soluciones informáticas en Lima, destacándonos por nuestra excelencia en servicio, variedad de productos y compromiso con la satisfacción del cliente, adaptándonos continuamente a los avances tecnológicos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Valores -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">Nuestros Valores</h2>
+            <div class="values-container">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Calidad</h3>
+                    <p>Nos comprometemos a ofrecer productos y servicios que cumplan con los más altos estándares de calidad.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Confianza</h3>
+                    <p>Construimos relaciones basadas en la honestidad y transparencia con nuestros clientes y colaboradores.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Servicio</h3>
+                    <p>Nos esforzamos por brindar una atención personalizada y soluciones adaptadas a cada cliente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Equipo (opcional) -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://via.placeholder.com/400x400" alt="Gerente General">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Jorge Mejía</h3>
+                        <p class="team-role">Gerente General</p>
+                        <p>Con más de 15 años de experiencia en el sector tecnológico, lidera nuestro equipo con visión y pasión.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://via.placeholder.com/400x400" alt="Jefe de Ventas">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Jhonatan Rojas</h3>
+                        <p class="team-role">Jefa de Ventas</p>
+                        <p>Especialista en atención al cliente, asegura que cada experiencia de compra sea excepcional.</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo">
+                        <img src="https://via.placeholder.com/400x400" alt="Técnico Especialista">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-name">Vittorio Schiaffino</h3>
+                        <p class="team-role">Técnico Especialista</p>
+                        <p>Certificado en múltiples plataformas, brinda soporte técnico experto y soluciones eficientes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                <h3>Categorías</h3>
+                <ul>
+                    <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                    <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                    <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                    <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                    <li><a href="productos.html?categoria=componentes">Componentes</a></li>
+                    <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                </ul>
+            </div>
+                <div class="footer-column">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="nosotros.html">Sobre nosotros</a></li>
+                        <li><a href="envios.html">Envíos y devoluciones</a></li>
+                        <li><a href="privacidad.html">Política de privacidad</a></li>
+                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                        <li><a href="contacto.php">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Compras</h3>
+                    <ul>
+                        <li><a href="#">Carrito de compras</a></li>
+                        <li><a href="#">Proceso de compra</a></li>
+                        <li><a href="#">Seguimiento de pedidos</a></li>
+                        <li><a href="#">Métodos de pago</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Uruguay 375, Lima</p>
+                    <p><i class="fas fa-phone"></i> 960 387918 / 980961060</p>
+                    <p><i class="fas fa-envelope"></i> info@compuya.com</p>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COMPU YA. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-mercado-pago"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script>
+        // Función para añadir al carrito
+        function addToCart(productName, productBrand, productPrice, productImage, quantity = 1) {
+            // Obtener el carrito actual de localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Verificar si el producto ya está en el carrito
+            const existingProductIndex = cart.findIndex(item => 
+                item.name === productName && item.brand === productBrand
+            );
+            
+            if (existingProductIndex !== -1) {
+                // Si ya existe, aumentar la cantidad
+                cart[existingProductIndex].quantity += quantity;
+            } else {
+                // Si no existe, añadir nuevo item
+                cart.push({
+                    name: productName,
+                    brand: productBrand,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: quantity
+                });
+            }
+            
+            // Guardar carrito actualizado
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Disparar evento de almacenamiento para sincronizar entre pestañas
+            window.dispatchEvent(new Event('storage'));
+            
+            // Mostrar mensaje de confirmación
+            alert(`Se ha añadido "${productName}" al carrito`);
+        }
+    
+        // Función para actualizar el contador del carrito
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Actualizar todos los elementos con clase cart-count
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+    
+        // Escuchar cambios en localStorage
+        window.addEventListener('storage', function(e) {
+            updateCartCount();
+        });
+    
+        // Actualizar contador al cargar la página
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>

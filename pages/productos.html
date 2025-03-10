@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Encuentra las mejores impresoras en COMPU YA. Amplia selección de impresoras HP, Epson y más con los mejores precios.">
+    <title>Impresoras | COMPU YA</title>
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .product-listing {
+            padding: var(--spacing-xxl) 0;
+        }
+        
+        .category-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: var(--spacing-lg) 0;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .category-title {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .category-description {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+            padding: var(--spacing-md);
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+        
+        .product-info {
+            padding: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .product-brand {
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-sm);
+            min-height: 2.6em;
+        }
+        
+        .product-features {
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .product-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .feature-icon {
+            color: var(--primary-color);
+            margin-right: var(--spacing-xs);
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+        
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .product-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .filters {
+            background-color: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--border-radius-md);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .filters h3 {
+            margin-bottom: var(--spacing-md);
+            font-size: 1.2rem;
+        }
+        
+        .filter-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .filter-title {
+            font-weight: 500;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+        
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            margin-right: var(--spacing-md);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .filter-checkbox input {
+            margin-right: var(--spacing-xs);
+        }
+        
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../index.html">
+                        <h1>COMPU YA</h1>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form action="#" method="GET">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="user-actions">
+                    <a href="carrito.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Carrito <span class="cart-count">0</span></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="../index.html">Inicio</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle active">Productos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="productos.html?categoria=impresoras" class="active">Impresoras</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="productos.html?categoria=componentes" class="dropdown-toggle">Componentes <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="productos.html?categoria=componentes&subcategoria=cases">Cases</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=procesadores">Procesadores</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=tarjetas">Tarjetas</a></li>
+                                <li><a href="productos.html?categoria=componentes&subcategoria=placas">Placas</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="nosotros.html">Nosotros</a></li>
+                <li class="nav-item"><a href="contacto.php">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Banner de la categoría -->
+    <section class="category-header">
+        <div class="container text-center">
+            <h1 class="category-title">Impresoras</h1>
+            <p class="category-description">Encuentra la impresora ideal para tu hogar u oficina. Contamos con modelos de tinta, láser, multifunción y más.</p>
+        </div>
+    </section>
+
+    <!-- Listado de productos -->
+    <section class="product-listing">
+        <div class="container">
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../img/productos/impresoras/hp-smart-530-main.webp" alt="HP Smart Tank 530">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">HP</div>
+                        <h3 class="product-title">Smart Tank 530</h3>
+                        <div class="product-features">
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-print"></i></span>
+                                <span>Multifunción</span>
+                            </div>
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-tint"></i></span>
+                                <span>Inyección de tinta</span>
+                            </div>
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-palette"></i></span>
+                                <span>Impresión a color</span>
+                            </div>
+                        </div>
+                        <div class="product-price">S/ 549</div>
+                        <div class="product-buttons">
+                            <a href="producto-detalle.html?id=hp-smart-tank-530" class="btn btn-secondary">Ver detalles</a>
+                            <button class="btn btn-primary btn-add-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../img/productos/impresoras/epson-l3250-main.webp" alt="Epson EcoTank L3250">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">Epson</div>
+                        <h3 class="product-title">EcoTank L3250</h3>
+                        <div class="product-features">
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-print"></i></span>
+                                <span>Simple función</span>
+                            </div>
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-tint"></i></span>
+                                <span>Inyección de tinta</span>
+                            </div>
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-palette"></i></span>
+                                <span>Impresión a color</span>
+                            </div>
+                        </div>
+                        <div class="product-price">S/ 569</div>
+                        <div class="product-buttons">
+                            <a href="epson-ecotank-l3250.html" class="btn btn-secondary">Ver detalles</a>
+                            <button class="btn btn-primary btn-add-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="../img/productos/impresoras/hp-deskjet-2874-main.webp" alt="HP DeskJet Ink Advantage 2774">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-brand">HP</div>
+                        <h3 class="product-title">DeskJet Ink Advantage 2874</h3>
+                        <div class="product-features">
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-print"></i></span>
+                                <span>Simple función</span>
+                            </div>
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-tint"></i></span>
+                                <span>Láser</span>
+                            </div>
+                            <div class="product-feature">
+                                <span class="feature-icon"><i class="fas fa-palette"></i></span>
+                                <span>Monocromática</span>
+                            </div>
+                        </div>
+                        <div class="product-price">S/ 389</div>
+                        <div class="product-buttons">
+                            <a href="hp-deskjet-ink-advantage-2874.html" class="btn btn-secondary">Ver detalles</a>
+                            <button class="btn btn-primary btn-add-cart">Añadir al carrito</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Categorías</h3>
+                    <ul>
+                        <li><a href="productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="productos.html?categoria=impresoras">Impresoras</a></li>
+                        <li><a href="productos.html?categoria=componentes">Componentes</a></li>
+                        <li><a href="productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="nosotros.html">Sobre nosotros</a></li>
+                        <li><a href="envios.html">Envíos y devoluciones</a></li>
+                        <li><a href="privacidad.html">Política de privacidad</a></li>
+                        <li><a href="terminos.html">Términos y condiciones</a></li>
+                        <li><a href="contacto.php">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Compras</h3>
+                    <ul>
+                        <li><a href="#">Carrito de compras</a></li>
+                        <li><a href="#">Proceso de compra</a></li>
+                        <li><a href="#">Seguimiento de pedidos</a></li>
+                        <li><a href="#">Métodos de pago</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Uruguay 375, Lima</p>
+                    <p><i class="fas fa-phone"></i> 960 387918 / 980961060</p>
+                    <p><i class="fas fa-envelope"></i> info@compuya.com</p>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COMPU YA. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-mercado-pago"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/main.js"></script>
+    <script>
+        // Función para añadir al carrito
+        function addToCart(productName, productBrand, productPrice, productImage, quantity = 1) {
+            // Obtener el carrito actual de localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Verificar si el producto ya está en el carrito
+            const existingProductIndex = cart.findIndex(item => 
+                item.name === productName && item.brand === productBrand
+            );
+            
+            if (existingProductIndex !== -1) {
+                // Si ya existe, aumentar la cantidad
+                cart[existingProductIndex].quantity += quantity;
+            } else {
+                // Si no existe, añadir nuevo item
+                cart.push({
+                    name: productName,
+                    brand: productBrand,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: quantity
+                });
+            }
+            
+            // Guardar carrito actualizado
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Disparar evento de almacenamiento para sincronizar entre pestañas
+            window.dispatchEvent(new Event('storage'));
+            
+            // Mostrar mensaje de confirmación
+            alert(`Se ha añadido "${productName}" al carrito`);
+        }
+    
+        // Función para actualizar el contador del carrito
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Actualizar todos los elementos con clase cart-count
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+    
+        // Escuchar cambios en localStorage
+        window.addEventListener('storage', function(e) {
+            updateCartCount();
+        });
+    
+        // Actualizar contador al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.btn-add-cart');
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.product-title').textContent;
+                    const productBrand = productCard.querySelector('.product-brand').textContent;
+                    const productPrice = parseFloat(productCard.querySelector('.product-price').textContent.replace('S/', '').trim());
+                    const productImage = productCard.querySelector('.product-image img').src;
+                    
+                    addToCart(productName, productBrand, productPrice, productImage);
+                });
+            });
+
+            // Forzar actualización del contador al cargar la página
+            updateCartCount();
+        });
+    </script>
+</body>
+</html>

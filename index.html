@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tienda online de computadoras, hardware y accesorios tecnológicos. Encuentra los mejores productos al mejor precio.">
+    <meta name="keywords" content="computadoras, laptops, hardware, accesorios, tecnología, tienda online">
+    <title>COMPU YA | Tu tienda de tecnología</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>COMPU YA</h1>
+                    </a>
+                </div>
+                <div class="search-bar">
+                    <form action="#" method="GET">
+                        <input type="text" placeholder="Buscar productos...">
+                        <button type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                </div>
+                <div class="user-actions">
+                    <a href="pages/carrito.html" class="cart-link"><i class="fas fa-shopping-cart"></i> Carrito <span class="cart-count" id="headerCartCount">0</span></a>
+                </div>
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html" class="active">Inicio</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="dropdown-toggle">Productos <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/productos.html?categoria=perifericos">Periféricos</a></li>
+                        <li><a href="pages/productos.html?categoria=monitores">Monitores</a></li>
+                        <li><a href="pages/productos.html?categoria=laptops">Laptops</a></li>
+                        <li><a href="pages/productos.html?categoria=impresoras">Impresoras</a></li>
+                        <li class="dropdown-submenu">
+                            <a href="pages/productos.html?categoria=componentes" class="dropdown-toggle">Componentes <i class="fas fa-chevron-right"></i></a>
+                            <ul class="dropdown-menu submenu">
+                                <li><a href="pages/productos.html?categoria=componentes&subcategoria=cases">Cases</a></li>
+                                <li><a href="pages/productos.html?categoria=componentes&subcategoria=procesadores">Procesadores</a></li>
+                                <li><a href="pages/productos.html?categoria=componentes&subcategoria=tarjetas">Tarjetas</a></li>
+                                <li><a href="pages/productos.html?categoria=componentes&subcategoria=placas">Placas</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="pages/productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="pages/nosotros.html">Nosotros</a></li>
+                <li class="nav-item"><a href="pages/contacto.php">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero / Banner principal -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Tecnología de punta a tu alcance</h2>
+                <p>Descubre nuestra selección de equipos y accesorios para potenciar tu experiencia digital</p>
+                <a href="pages/productos.html" class="btn btn-primary">Ver catálogo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorías destacadas -->
+    <section class="featured-categories">
+    <div class="container">
+        <h2 class="section-title">Categorías destacadas</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://via.placeholder.com/300x200" alt="Periféricos">
+                </div>
+                <h3>Periféricos</h3>
+                <a href="pages/productos.html?categoria=perifericos" class="btn btn-secondary">Ver productos</a>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://via.placeholder.com/300x200" alt="Laptops">
+                </div>
+                <h3>Laptops</h3>
+                <a href="pages/productos.html?categoria=laptops" class="btn btn-secondary">Ver productos</a>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://via.placeholder.com/300x200" alt="Componentes">
+                </div>
+                <h3>Componentes</h3>
+                <a href="pages/productos.html?categoria=componentes" class="btn btn-secondary">Ver productos</a>
+            </div>
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://via.placeholder.com/300x200" alt="PCs Armadas">
+                </div>
+                <h3>PCs Armadas</h3>
+                <a href="pages/productos.html?categoria=pcs-armadas" class="btn btn-secondary">Ver productos</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Productos destacados -->
+    <section class="featured-products">
+        <div class="container">
+            <h2 class="section-title">Productos destacados</h2>
+            <div class="products-grid">
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-badge">Oferta</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Producto 1">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Laptop Gamer 15.6"</h3>
+                        <p class="product-description">Intel Core i7, 16GB RAM, 512GB SSD, RTX 3060</p>
+                        <div class="product-price">
+                            <span class="price-old">$1,299.99</span>
+                            <span class="price-current">$1,099.99</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('Laptop Gamer 15.6', 'Intel', 1099.99, 'https://via.placeholder.com/300x300')">Añadir al carrito</button>
+                    </div>
+                </div>
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Producto 2">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">PC Gaming</h3>
+                        <p class="product-description">AMD Ryzen 7, 32GB RAM, 1TB SSD, RTX 3080</p>
+                        <div class="product-price">
+                            <span class="price-current">$1,599.99</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('PC Gaming', 'AMD', 1599.99, 'https://via.placeholder.com/300x300')">Añadir al carrito</button>
+                    </div>
+                </div>
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-badge new-badge">Nuevo</div>
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Producto 3">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Monitor Gaming 27"</h3>
+                        <p class="product-description">QHD, 165Hz, 1ms, IPS, HDR</p>
+                        <div class="product-price">
+                            <span class="price-current">$349.99</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('Monitor Gaming 27', 'Genérico', 349.99, 'https://via.placeholder.com/300x300')">Añadir al carrito</button>
+                    </div>
+                </div>
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://via.placeholder.com/300x300" alt="Producto 4">
+                    </div>  
+                    <div class="product-info">
+                        <h3 class="product-title">Teclado Mecánico RGB</h3>
+                        <p class="product-description">Switches Blue, Retroiluminado, Layout ES</p>
+                        <div class="product-price">
+                            <span class="price-current">$89.99</span>
+                        </div>
+                        <button class="btn btn-primary" onclick="addToCart('Teclado Mecánico RGB', 'Genérico', 89.99, 'https://via.placeholder.com/300x300')">Añadir al carrito</button>
+                    </div>
+                </div>
+            </div>
+            <div class="center-btn">
+                <a href="pages/productos.html" class="btn btn-secondary">Ver todos los productos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner promocional -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-content">
+                <h2>¡Envío gratis en compras mayores a $500!</h2>
+                <p>Aprovecha esta oferta por tiempo limitado</p>
+                <a href="pages/productos.html" class="btn btn-light">Comprar ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ventajas -->
+    <section class="advantages">
+        <div class="container">
+            <div class="advantages-grid">
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Envío rápido</h3>
+                    <p>Entrega en 24-48 horas a todo el país</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Garantía de calidad</h3>
+                    <p>Todos nuestros productos con garantía oficial</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Pago seguro</h3>
+                    <p>Múltiples métodos de pago disponibles</p>
+                </div>
+                <div class="advantage-item">
+                    <div class="advantage-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte técnico</h3>
+                    <p>Asistencia telefónica y en línea</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                    <div class="footer-column">
+                        <h3>Categorías</h3>
+                        <ul>
+                            <li><a href="pages/productos.html?categoria=perifericos">Periféricos</a></li>
+                            <li><a href="pages/productos.html?categoria=monitores">Monitores</a></li>
+                            <li><a href="pages/productos.html?categoria=laptops">Laptops</a></li>
+                            <li><a href="pages/productos.html?categoria=impresoras">Impresoras</a></li>
+                            <li><a href="pages/productos.html?categoria=componentes">Componentes</a></li>
+                            <li><a href="pages/productos.html?categoria=pcs-armadas">PCs Armadas</a></li>
+                        </ul>
+                    </div>
+                <div class="footer-column">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="pages/nosotros.html">Sobre nosotros</a></li>
+                        <li><a href="pages/envios.html">Envíos y devoluciones</a></li>
+                        <li><a href="pages/privacidad.html">Política de privacidad</a></li>
+                        <li><a href="pages/terminos.html">Términos y condiciones</a></li>
+                        <li><a href="pages/contacto.php">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Compras</h3>
+                    <ul>
+                        <li><a href="#">Carrito de compras</a></li>
+                        <li><a href="#">Proceso de compra</a></li>
+                        <li><a href="#">Seguimiento de pedidos</a></li>
+                        <li><a href="#">Métodos de pago</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Uruguay 375, Lima</p>
+                    <p><i class="fas fa-phone"></i> 960 387918 / 980961060</p>
+                    <p><i class="fas fa-envelope"></i> info@compuya.com</p>
+                    <div class="social-media">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 COMPU YA. Todos los derechos reservados.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-amex"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-mercado-pago"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Función para añadir al carrito
+        function addToCart(productName, productBrand, productPrice, productImage, quantity = 1) {
+            // Obtener el carrito actual de localStorage
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Verificar si el producto ya está en el carrito
+            const existingProductIndex = cart.findIndex(item => 
+                item.name === productName && item.brand === productBrand
+            );
+            
+            if (existingProductIndex !== -1) {
+                // Si ya existe, aumentar la cantidad
+                cart[existingProductIndex].quantity += quantity;
+            } else {
+                // Si no existe, añadir nuevo item
+                cart.push({
+                    name: productName,
+                    brand: productBrand,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: quantity
+                });
+            }
+            
+            // Guardar carrito actualizado
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Disparar evento de almacenamiento para sincronizar entre pestañas
+            window.dispatchEvent(new Event('storage'));
+            
+            // Mostrar mensaje de confirmación
+            alert(`Se ha añadido "${productName}" al carrito`);
+        }
+    
+        // Función para actualizar el contador del carrito
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Actualizar todos los elementos con clase cart-count
+            const cartCountElements = document.querySelectorAll('.cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+        }
+    
+        // Escuchar cambios en localStorage
+        window.addEventListener('storage', function(e) {
+            updateCartCount();
+        });
+    
+        // Actualizar contador al cargar la página
+        document.addEventListener('DOMContentLoaded', updateCartCount);
+    </script>
+</body>
+</html>
